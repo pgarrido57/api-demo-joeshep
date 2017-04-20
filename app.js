@@ -1,11 +1,11 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var bodyParser = require('body-parser');
+let express = require('express');
+let path = require('path');
+let logger = require('morgan');
+let bodyParser = require('body-parser');
 
-var routes = require('./routes/');
+let routes = require('./routes/');
 
-var app = express();
+let app = express();
 
 // This 'if' statement prevents application log messages from
 // displaying in the stdout when the tests are run
@@ -19,7 +19,7 @@ app.use('/api/v1/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
@@ -39,7 +39,7 @@ app.use( (err, req, res, next) => {
   res.status(err.status || 500);
   res.json({
     message: err.message,
-    error: err
+    error: {}
   });
 });
 

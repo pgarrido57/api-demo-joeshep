@@ -1,5 +1,3 @@
-'use strict';
-
 const { bookshelf } = require('../db/database');
 const Show = require('../models/show');
 
@@ -36,7 +34,7 @@ module.exports.deleteShow = ({params: {id}}, res, next) => {
   Show.forge({id})
   .destroy()
   .then( (show) => {
-    res.status(200).json(show);
+    res.status(202).json(show);
   })
   .catch( (err) => {
     next(err);
@@ -48,7 +46,7 @@ module.exports.getShowFaves = ({query: {showId}}, res, next) => {
   Show.forge({id: showId})
   .fetch({withRelated: ['upvotes'], require: true})
   .then( (faves) => {
-    res.status(202).json(faves)
+    res.status(200).json(faves)
   })
   .catch( (err) => {
     next(err);
@@ -60,7 +58,7 @@ module.exports.getShowDirectors = ({query: {showId}}, res, next) => {
   Show.forge({id: showId})
   .fetch({withRelated: ['directors'], require: true})
   .then( (showdirex) => {
-    res.status(202).json(showdirex)
+    res.status(200).json(showdirex)
   })
   .catch( (err) => {
     next(err);
